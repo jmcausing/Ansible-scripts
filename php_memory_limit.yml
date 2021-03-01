@@ -1,12 +1,4 @@
 - hosts: all
-  vars:
-    ansible_host_key_checking: false
-
-    # Workaround if LXC target host does not have python 3 (not by default)
-    ansible_python_interpreter: "/usr/bin/python3"
-
-    #  vars_files:
-    # - vars.yml
 
   become: true
   become_user: root
@@ -14,9 +6,6 @@
   # Ansible tasks stars here..
   tasks:
 
-
-    # -- START Install Required repo and updates.
-    # Required for PHP FPM
     - name: Getting the php version
       shell: "ps -aux | grep /etc/php/ | grep -v grep | awk '{print $14}' | awk -F'/' '{print $4}'"
       register: phpversion
